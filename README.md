@@ -8,5 +8,5 @@ python3 -m venv llm_hackathon
 source llm_hackathon/bin/activate
 cd creative3d-llm
 pip install -r requirements.txt
-python3 openai_utils.py Write a poem --api-key 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
+python3 openai_utils.py Write a poem --api-key [key]
 ```
