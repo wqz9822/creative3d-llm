@@ -1,11 +1,49 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Ask a Question</title>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+	<title>Resurrected Art</title>
+    
+	<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+	<style>
+        body {
+          margin: 0 auto;
+          max-width: 800px;
+        }
+	</style> 
 </head>
 <body>
+    <h1>Resurrected Art</h2>
+    <p>Going to a museum? Great! Going to a museum with your smart friends who can explain everything and answer your questions? Even better! But what if these friends I definitely have are unavailable? Enter: <strong>Resurrected Art</strong>. It is an interactive museum audio tour that uses an LLM combined with text synthesis to emulate that personal tour guide experience. It also helps provide an otherwise inaccessible experience for visually impaired individuals.</p>
+    <h2>Challenges &amp; Solutions</h2>
+    <p>One challenge of LLM is accuray. With <strong>Resurrected Art</strong> you first scan a QR code already at the exhibit, which provides the professionally written and fact-checked first-degree results, and seeds the chatGPT prompts with this information during follow-up questions. We do not intend to replace audio tours, but to augment them. In particular, provide the ability to answer follow-up questions for the inquisitive.</p>
+    <h2>User Context:</h2>
+    <p>QR codes let as assume location, interest, and intention; then direct spoken user queries come with more context and meaning.</p>
 	<form action="/ask_question" method="GET">
+		<div class="form-group">
+			<label for="author-name">Author Name:</label>
+			<select id="author-name" class="form-select" aria-label="Default select example" name="author_name" required>
+				<option value="">Please select an author</option>
+				<option value="Leonardo Da Vinci">Leonardo Da Vinci</option>
+				<option value="Pablo Picasso">Pablo Picasso</option>
+			</select>
+		</div>
+		<br>
+		<div class="form-group">
+			<label for="question">Question:</label>
+			<select id="question" class="form-select" name="question" required>
+				<option value="">Please select a question</option>
+				<option value="Tell me about your work">Tell me about your work</option>
+				<option value="Can you tell me more about Mona Lisa? Who is she?">Can you tell me more about Mona Lisa? Who is she?</option>
+				<option value="Tell me about your family">Tell me about your family</option>
+			</select>
+		</div>
+		<br>
+		<button type="submit" class="btn btn-primary">Submit</button>
+	</form>
+	<br>
+	<!-- <form action="/ask_question" method="GET">
 		<label for="author-name">Author Name:</label>
 		<select id="author-name" class="form-select" aria-label="Default select example" name="author_name" required>
 			<option value="">Please select an author</option>
@@ -20,6 +58,9 @@
 			<option value="Tell me about your family">Tell me about your family</option>
 		</select><br><br>
 		<button type="submit">Submit</button>
-	</form>
+	</form> -->
+	<h2>Design Successes</h2>
+	<p>The focus of this project is exploring human-computer interaction methods, poking at the edges of what LLM’s can do. Speech/Audio interfaces are nothing new, but by leveraging the long-established paradigms of museum audio tours, and well-established user-expectations, it makes the user experience far more pleasant than in general use-cases - so long as the information is correct and insightful.</p>
+	<p>In addition to the expectations of the interaction, we can also take advantage of the museum’s QR codes. Instead of writing our own, we use the QR codes already in place at the museum. We send the linked QR code website to a summarizing API, then seed that summary in the text prompt during the users follow-up questions.</p>
 </body>
 </html>
