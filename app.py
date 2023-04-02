@@ -6,6 +6,7 @@ from text_to_speech import read_text
 from threading import Thread
 import urllib.parse
 import os
+from audio_player import AudioPlaybackThread
 
 app = Flask(__name__)
 
@@ -14,6 +15,9 @@ ELEVEN_KEY = os.environ["ELEVEN_KEY"]
 current_author = None 
 current_question = None
 audio_thread = None
+
+playback_thread = AudioPlaybackThread("background.mp3")
+playback_thread.start()
 
 voice_model_map = {
     "Leonardo Da Vinci" : "Josh",

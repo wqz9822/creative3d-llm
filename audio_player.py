@@ -12,7 +12,7 @@ class AudioPlaybackThread(threading.Thread):
     def run(self):
         # # load the mp3 file and convert it to WAV format
         mp3 = AudioSegment.from_mp3(self.filename)
-        mp3 = mp3 - 23 
+        mp3 = mp3 - 10 
         wave_data = mp3.export(format="wav").read()
         # create a Simpleaudio buffer from the wave data
         play_obj = sa.play_buffer(wave_data, num_channels=2, bytes_per_sample=2, sample_rate=44100)
