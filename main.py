@@ -41,7 +41,6 @@ if __name__ == "__main__":
 
     while True:
         user_input = input("Press 'm' to send a message, 'r' to record audio, or 'e' to exit: ")
-        # TODO: Prefix the prompt
         if user_input == 'm':
             prompt = MuseumPrompt.get_prompt(input("Enter your message: "))
             print("Prompt:", prompt) 
