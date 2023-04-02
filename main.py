@@ -10,9 +10,10 @@ from prompt_maker import MuseumPrompt
 def transcribe_and_receive_response():
     with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as temp_audio_file:
         record_audio(temp_audio_file.name)
-        prompt = MuseumPrompt.get_prompt(transcribe_audio(temp_audio_file.name))
+        transcript = transcribe_audio(temp_audio_file.name)
+        prompt = MuseumPrompt.get_prompt(transcript["text"])
         print("Prompt:", prompt)
-        return handle_message(transcript["text"], args.openai_api_key) 
+        return handle_message(prompt, args.openai_api_key) 
 
 def read_response(response, elevenlabs_api_key): 
     if not args.elevenlabs_api_key:

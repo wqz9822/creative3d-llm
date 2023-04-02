@@ -4,6 +4,12 @@ class Prompter:
    def get_prompt(user_input): 
      pass 
 
+class FantasyStoryPrompt(Prompter):
+    @staticmethod
+    def get_prompt(user_input):
+        prompt = f"Tell a fantasy story in 2nd person: {user_input}" 
+        return prompt
+
 class MuseumPrompt(Prompter):
     @staticmethod
     def get_prompt(user_input):
