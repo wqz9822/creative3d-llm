@@ -5,12 +5,13 @@ from audio_player import AudioPlaybackThread
 from openai_utils import handle_message
 from speech_to_text import record_audio, transcribe_audio
 from text_to_speech import read_text, split_paragraph_into_sentences, group_sentences
+from prompt_maker import MuseumPrompt
 
 def transcribe_and_receive_response():
     with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as temp_audio_file:
         record_audio(temp_audio_file.name)
-        transcript = transcribe_audio(temp_audio_file.name)
-        print("Transcript:", transcript)
+        prompt = MuseumPrompt.get_prompt(transcribe_audio(temp_audio_file.name))
+        print("Prompt:", prompt)
         return handle_message(transcript["text"], args.openai_api_key) 
 
 def read_response(response, elevenlabs_api_key): 
@@ -42,7 +43,8 @@ if __name__ == "__main__":
         user_input = input("Press 'm' to send a message, 'r' to record audio, or 'e' to exit: ")
         # TODO: Prefix the prompt
         if user_input == 'm':
-            prompt = input("Enter your message: ")
+            prompt = MuseumPrompt.get_prompt(input("Enter your message: "))
+            print("Prompt:", prompt) 
             response = handle_message(prompt, args.openai_api_key) 
             print("Response:", response) 
             read_response(response, args.elevenlabs_api_key) 
