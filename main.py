@@ -9,7 +9,7 @@ from text_to_speech import read_text
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Chat with GPT using OpenAI')
     parser.add_argument('--openai_api_key', type=str, required=True, help='the OpenAI API key to use')
-    parser.add_argument('--elevenlabs_api_key',type=str, required=True, help='the ElevenLabs API key to use')
+    parser.add_argument('--elevenlabs_api_key',type=str, required=False, help='the ElevenLabs API key to use')
     args = parser.parse_args()
 
     # Set up OpenAI API key
@@ -21,6 +21,9 @@ if __name__ == "__main__":
         print("Transcript:", transcript)
         response = handle_message(transcript["text"], args.openai_api_key) 
         print("Response:", response) 
-        read_text(response, args.elevenlabs_api_key) 
+        if args.elevenlabs_api_key:
+            read_text(response, args.elevenlabs_api_key)
+        else:
+            print("Skipping ElevenLabs API call as no API key was provided.") 
 
     
