@@ -27,7 +27,7 @@ def handle_message(message, api_key):
 # Define main entry point
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Chat with GPT using OpenAI')
-    parser.add_argument('--api-key', metavar='API_KEY', type=str, required=True,
+    parser.add_argument('--api_key', metavar='API_KEY', type=str, required=True,
                         help='the OpenAI API key to use')
     parser.add_argument('message', metavar='M', type=str, nargs='+',
                         help='the message to send to GPT')
