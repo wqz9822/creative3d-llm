@@ -55,12 +55,14 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Chat with GPT using OpenAI')
     parser.add_argument('--openai_api_key', type=str, required=True, help='the OpenAI API key to use')
     parser.add_argument('--elevenlabs_api_key',type=str, required=False, help='the ElevenLabs API key to use')
+    parser.add_argument('--mute_music', action='store_true', required=False, help='mute the background music')
     args = parser.parse_args()
     # Set up OpenAI API key
     openai.api_key = args.openai_api_key
 
-    playback_thread = AudioPlaybackThread("background.mp3")
-    playback_thread.start()
+    if not args.mute_music:
+        playback_thread = AudioPlaybackThread("background.mp3")
+        playback_thread.start()
 
     while True:
         user_input = input("Press 'm' to send a message, 'r' to record audio, or 'e' to exit: ")
@@ -79,10 +81,6 @@ if __name__ == "__main__":
         else:
             print("Invalid input, please try again.")
 
-    playback_thread.stop()
-    playback_thread.join() 
-
-
-
-
-    
+    if playback_thread.is_alive():
+        playback_thread.stop()
+        playback_thread.join() 
