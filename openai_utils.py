@@ -4,7 +4,7 @@ import argparse
 # Define a function to generate a response using OpenAI
 def generate_response(prompt, api_key):
     openai.api_key = api_key
-    model_engine = "text-davinci-002" # Replace with your preferred model engine
+    model_engine = "text-davinci-003" # Replace with your preferred model engine
     prompt = f"{prompt.strip()}\nAI:"
     response = openai.Completion.create(
         engine=model_engine,

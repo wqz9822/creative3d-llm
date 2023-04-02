@@ -3,7 +3,7 @@ import argparse
 import tempfile
 from openai_utils import handle_message
 from speech_to_text import record_audio, transcribe_audio
-from text_to_speech import read_text
+from text_to_speech import read_text, split_paragraph_into_sentences, group_sentences
 
 # Define main entry point
 if __name__ == "__main__":
@@ -22,7 +22,12 @@ if __name__ == "__main__":
         response = handle_message(transcript["text"], args.openai_api_key) 
         print("Response:", response) 
         if args.elevenlabs_api_key:
-            read_text(response, args.elevenlabs_api_key)
+            # groups = group_sentences(split_paragraph_into_sentences(response), 5) 
+            # for group in groups: 
+            #     if group: 
+            #         text=" ".join(group)
+            #         read_text(text, args.elevenlabs_api_key, streaming=True)
+            read_text(response, args.elevenlabs_api_key, streaming=True)
         else:
             print("Skipping ElevenLabs API call as no API key was provided.") 
 
