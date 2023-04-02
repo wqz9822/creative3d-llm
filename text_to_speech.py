@@ -27,9 +27,9 @@ def group_sentences(lst, chunk_size):
         chunks.append(lst[i:i + chunk_size])
     return chunks
 
-def read_text(text, api_key, streaming=False):
+def read_text(text, api_key, voice_model="Josh", streaming=False):
     user = ElevenLabsUser(api_key)
-    voice = user.get_voices_by_name("Rachel")[0]  # This is a list because multiple voices can have the same name
+    voice = user.get_voices_by_name(voice_model)[0]  # This is a list because multiple voices can have the same name
     if streaming:
         voice.generate_and_stream_audio(text, stability=1, streamInBackground=False)
     else:

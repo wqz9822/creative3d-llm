@@ -15,17 +15,24 @@ current_author = None
 current_question = None
 audio_thread = None
 
+voice_model_map = {
+    "Leonardo Da Vinci" : "Josh",
+    "Pablo Picasso" : "Antoni"
+}
+
 def read_response(response):
     print("Response:", response) 
-    read_text(response, ELEVEN_KEY) 
+    read_text(response, ELEVEN_KEY, voice_model=voice_model_map[current_author]) 
 
 @app.route('/ask_question')
 def ask_question():
+    global current_author
+    global current_question
     current_question = request.args.get('question')
     current_author = urllib.parse.unquote(request.args.get('author_name')).replace('"', '')
-    print(current_author) 
+    # print(f"{current_author}") 
     prompt = AuthorPrompt.get_prompt(current_question, author_name=current_author)
-    print("Prompt:", prompt) 
+    # print("Prompt:", prompt) 
     response = handle_message(prompt, OPENAI_KEY) 
     audio_thread = Thread(target=read_response, args=(response,)) 
     audio_thread.start()

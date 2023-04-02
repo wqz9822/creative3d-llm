@@ -1,9 +1,24 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>M</title>
-    </head>
-    <body>
-        <p>This is an example of a simple HTML page with one paragraph.</p>
-    </body>
+<head>
+	<title>Ask a Question</title>
+</head>
+<body>
+	<form action="/ask_question" method="GET">
+		<label for="author-name">Author Name:</label>
+		<select id="author-name" name="author_name" required>
+			<option value="">Please select an author</option>
+			<option value="Leonardo Da Vinci">Leonardo Da Vinci</option>
+			<option value="Pablo Picasso">Pablo Picasso</option>
+		</select><br><br>
+		<label for="question">Question:</label>
+		<select id="question" name="question" required>
+			<option value="">Please select a question</option>
+			<option value="Tell me about your work">Tell me about your work</option>
+			<option value="Can you tell me more about Mona Lisa? Who is she?">Can you tell me more about Mona Lisa? Who is she?</option>
+			<option value="Tell me about your family">Tell me about your family</option>
+		</select><br><br>
+		<button type="submit">Submit</button>
+	</form>
+</body>
 </html>
