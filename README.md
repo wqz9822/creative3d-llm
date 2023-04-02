@@ -14,3 +14,4 @@ python3 main.py --openai_api_key [key] --elevenlabs_api_key [key]
 ```
 
 Music: 'honey jam' - massobeats
+Flutter App - https://github.com/Florian268/tell_me_more.git
