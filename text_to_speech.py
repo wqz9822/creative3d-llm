@@ -31,6 +31,6 @@ def read_text(text, api_key, streaming=False):
     user = ElevenLabsUser(api_key)
     voice = user.get_voices_by_name("Rachel")[0]  # This is a list because multiple voices can have the same name
     if streaming:
-        voice.generate_and_stream_audio(text, stability=0.5, streamInBackground=False)
+        voice.generate_and_stream_audio(text, stability=1, streamInBackground=True)
     else:
-        voice.generate_and_play_audio(text, stability=0.5, playInBackground=False)
+        voice.generate_and_play_audio(text, stability=1, playInBackground=True)
