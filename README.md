@@ -12,3 +12,5 @@ python3 openai_utils.py Write a poem --api_key [key]
 python3 speech_to_text.py --api_key [key] 
 python3 main.py --openai_api_key [key] --elevenlabs_api_key [key] 
 ```
+
+Music: 'honey jam' - massobeats
